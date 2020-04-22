@@ -1,0 +1,9 @@
+<a class="btn btn-dark float-right mb-3" routerLink="/logout">Logout</a>
+<form (submit)="Add($event)">
+    <div class="form-group">
+        <label for="task">Enter Task Title :</label>
+        <input type="text" name="title" id="task" class="form-control" placeholder="Enter Task Title" [(ngModel)]="title" [ngClass]=" {'is-invalid' : title==='' && formSubmitted} ">
+        <div class="invalid-feedback">Task can't be black ! </div>
+    </div>
+    <button class="btn btn-dark">Add Task</button>
+</form>

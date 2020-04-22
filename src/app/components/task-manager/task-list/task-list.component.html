@@ -1,0 +1,8 @@
+<div class="card card-header mt-4" *ngIf="tasks.length==0">
+    <h6>Tasks not present !!!</h6>
+</div>
+<ul class="list-group mt-4">
+    <li class="list-group-item" *ngFor="let task of tasks">
+        <app-task-item [task]="task"></app-task-item>
+    </li>
+</ul>
