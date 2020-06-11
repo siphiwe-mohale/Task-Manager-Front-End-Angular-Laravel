@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../../service/task.service';
-import { MessageService } from '../../../service/message.service';
+import { TaskService } from '../../../Services/task.service';
+import { MessageService } from '../../../Services/message.service';
 
 @Component({
   selector: 'app-task-form',

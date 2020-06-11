@@ -1,39 +1,49 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { TaskManagerComponent } from './components/task-manager/task-manager.component';
 import { TaskDetailComponent } from './components/task-manager/task-detail/task-detail.component';
-import { AuthGuard } from './service/auth-guard.service';
+import { RequestResetComponent } from './components/password/request-reset/request-reset.component';
+import { ResponseResetComponent } from './components/password/response-reset/response-reset.component';
+import { BeforeLoginService } from './Services/before-login.service';
+import { AfterLoginService } from './Services/after-login.service';
 
-const routes: Routes = [
-  {
-    path:'',
-    redirectTo:'login',
-    pathMatch:'full'
-  },
+const appRoutes: Routes = [
   {
     path:'login',
-    component:LoginComponent
+    component:LoginComponent,
+    canActivate: [BeforeLoginService]
+  },
+  {
+    path:'signup',
+    component:SignupComponent,
+    canActivate: [BeforeLoginService]
   },
   {
     path:'task',
     component:TaskManagerComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AfterLoginService]
   },
   {
     path:'task/:id',
     component:TaskDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AfterLoginService]
   },
   {
-    path: 'logout',
-    component:LoginComponent,
-    canActivate: [AuthGuard]
-  }
+    path:'request-password-reset',
+    component:RequestResetComponent,
+    canActivate: [BeforeLoginService]
+  },
+  {
+    path:'response-password-reset',
+    component:ResponseResetComponent,
+    canActivate: [BeforeLoginService]
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './service/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +8,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor() {}
 
   ngOnInit(){
-    if (this.authService.isUserLoggedIn()){
-      this.router.navigate(['/task']);
-    }
+    
   }
 }

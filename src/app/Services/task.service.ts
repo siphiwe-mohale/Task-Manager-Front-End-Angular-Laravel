@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class TaskService {
 
-  server:string = 'http://127.0.0.1:8000/';
+  server:string = 'http://127.0.0.1:8000/api/';
   headers:Headers = new Headers();
   options:any;
 

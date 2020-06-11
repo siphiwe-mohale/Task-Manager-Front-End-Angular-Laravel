@@ -1,0 +1,8 @@
+<nav class="navbar navbar-light bg-dark text-white justify-content-between">
+    <a class="navbar-brand">Navbar</a>
+    <div>
+        <a class="navbar-brand bg-dark text-white" routerLink="login" *ngIf="!loggedIn">Login</a>
+        <a class="navbar-brand bg-dark text-white" href="#" (click)="logout($event)" *ngIf="loggedIn">Logout</a>
+        <a class="navbar-brand bg-dark text-white" routerLink="task" *ngIf="loggedIn">Task Manager</a>
+    </div>
+</nav>

@@ -2,33 +2,31 @@ import { Component, OnInit } from '@angular/core';
 import { ConnetorService } from 'src/app/Services/connetor.service';
 import { TokenService } from 'src/app/Services/token.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/Services/auth.service';
-
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
   public form = {
     email:null,
-    password:null
+    name:null,
+    password: null,
+    password_confirmation:null
   };
 
-  public error = null;
-  
+  public error = [];
 
   constructor(
     private Connetor: ConnetorService,
     private Token: TokenService,
-    private router: Router,
-    private Auth: AuthService
+    private router: Router
     ) { }
 
-  onSubmit(){
-    this.Connetor.login(this.form).subscribe(
+  onSubmit() {
+    this.Connetor.signup(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
@@ -36,12 +34,11 @@ export class LoginComponent implements OnInit {
 
   handleResponse(data){
     this.Token.handle(data.access_token);
-    this.Auth.changeAuthStatus(true);
     this.router.navigateByUrl('/task');
   }
 
   handleError(error) {
-    this.error = error.error.error;
+    this.error = error.error.errors;
   }
 
   ngOnInit() {

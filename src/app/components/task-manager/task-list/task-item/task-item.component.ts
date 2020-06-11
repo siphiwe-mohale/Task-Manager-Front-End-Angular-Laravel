@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../../../../Task';
-import { TaskService } from '../../../../service/task.service';
-import { MessageService } from '../../../../service/message.service';
+import { TaskService } from '../../../../Services/task.service';
+import { MessageService } from '../../../../Services/message.service';
 
 @Component({
   selector: 'app-task-item',
